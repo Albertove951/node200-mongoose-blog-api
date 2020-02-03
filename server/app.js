@@ -2,12 +2,17 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
-mongoose.connect('mongodc://localhost://localhost/my-blog', { useMongoClient: true});
+mongoose.connect('mongodb://localhost:27017/my-blog',{ useNewUrlParser: true,  useUnifiedTopology: true });
+
 mongoose.Promise = Promise;
 
-applicationCache.use(bodyParser.json());
+const app = express();
 
-applicationCache.get('/', (req, res) => {
+app.use(bodyParser.json());
+app.use('/api/users', require('./routes/users'));
+
+
+app.get('/', (req, res) => {
     res.status(200).send();
 });
 
