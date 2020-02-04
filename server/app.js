@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
 mongoose.connect('mongodb://localhost:27017/my-blog',{ useNewUrlParser: true,  useUnifiedTopology: true });
+mongoose.connect('mongodb://localhost:27017/users',{ useNewUrlParser: true,  useUnifiedTopology: true });
 
 mongoose.Promise = Promise;
 
@@ -17,4 +18,3 @@ app.get('/', (req, res) => {
 });
 
 module.exports = app;
-
