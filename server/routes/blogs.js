@@ -14,13 +14,12 @@ router.get('/', (req, res) => {
         });
 });
 // fix where route
-// router.get('/featured', (req, res) => {
-//     Blog
-//         .where()
-//         .then(blogs => {
-//             res.status(200).json(blogs);
-//         });
-// });
+router.get('/featured', (req, res) => {
+    Blog
+    .where({featured: true})
+    .then(blogs => res.status(200).json(blogs))
+    .catch(err => res.status(500).send(err))
+});
 
 router.get('/:id', (req, res) => {
     Blogs
@@ -31,7 +30,7 @@ router.get('/:id', (req, res) => {
 });
     
 router.post('/', (req, res) => {
-    const newBlog =  new Blog({
+    const newBlog = new Blog({
         title: req.body.title,
         article: req.body.article,
         published: req.body.published,
@@ -39,13 +38,13 @@ router.post('/', (req, res) => {
         author: req.body.author
     });
     newBlog.save()
-        .then(blogs => {
-            res.send("item saved to database");
+    .then(blogs => {
+        res.send("item saved to database");
         })
-            .catch(err => {
-                res.status(400).send("unable to save to database");
-            });
-   });
+        .catch(err => {
+            res.status(400).send("unable to save to database");
+        });
+});
 
 router.put('/:id', (req, res) => {
 Blog
@@ -55,6 +54,7 @@ Blog
         article: req.body.article,
         published: req.body.published,
         featured: req.body.featured,
+        author: req.body.author
     })
     .then(blogs => {
     res.status(204).json(blogs);
