@@ -1,9 +1,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-
-mongoose.connect('mongodb://localhost:27017/my-blog',{ useNewUrlParser: true,  useUnifiedTopology: true });
-mongoose.connect('mongodb://localhost:27017/users',{ useNewUrlParser: true,  useUnifiedTopology: true });
+var url = "mongodb://localhost:27017/"
+mongoose.connect(url + 'my-blog',{ useNewUrlParser: true,  useUnifiedTopology: true });
+mongoose.connect(url + 'blogs',{ useNewUrlParser: true,  useUnifiedTopology: true });
+mongoose.connect(url +'users', { useNewUrlParser: true, useUnifiedTopology: true });
 
 mongoose.Promise = Promise;
 
